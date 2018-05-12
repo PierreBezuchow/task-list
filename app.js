@@ -53,7 +53,7 @@ function addTask(e){
 }
 
 //Remove task
-function removeTask(e){
+function removeTask(e) {
   if(e.target.parentElement.classList.contains('delete-item')) {
     if(confirm('Are you sure?')){
       e.target.parentElement.parentElement.remove();
@@ -61,4 +61,14 @@ function removeTask(e){
     
   }
 
+}
+
+//Clear tasks
+function clearTasks() {
+  //slower
+ // taskList.innerHTML = '';
+ //faster
+ while(taskList.firstChild){
+   taskList.removeChild(taskList.firstChild);
+ }
 }
