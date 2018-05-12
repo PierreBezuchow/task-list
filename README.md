@@ -9,3 +9,4 @@ Functions:
 - Removing task
 - Clearing all tasks
 - Filtering tasks
+
