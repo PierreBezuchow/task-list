@@ -9,6 +9,7 @@ Used Materialize to deal with CSS faster.
 - Removing task
 - Clearing all tasks
 - Filtering tasks
+- Persist tasks to Local Storage
 
 ### Preview:
 ![alt-text](https://github.com/PierreBezuchow/task-list/blob/master/task-list-screenshot.png)
