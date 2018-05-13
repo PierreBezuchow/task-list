@@ -10,6 +10,8 @@ const taskInput = document.querySelector('#task');
 loadEventListeneres();
 
 function loadEventListeneres (){
+  //DOM Load event
+  document.addEventListener('DOMContentLoaded', getTasks);
   // Add task event
   form.addEventListener('submit', addTask);
   //Remove task event
@@ -18,6 +20,35 @@ function loadEventListeneres (){
   clearBtn.addEventListener('click', clearTasks);
   //Filter tasks event
   filter.addEventListener('keyup', filterTasks);
+}
+
+//Get tasks from Local Storage
+function getTasks() {
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks')); 
+  }
+  tasks.forEach(function(task){
+    //Create li element
+    const li = document.createElement('li');
+    //Create class
+    li.className = 'collection-item';
+    //Create text node and append to li
+    li.appendChild(document.createTextNode(task));
+    //Create link element
+    const link = document.createElement('a');
+    //Create class
+    link.className = 'delete-item secondary-content'; 
+    //Add icon html (Materialize)
+    link.innerHTML = '<i class = "fa fa-remove"></i>';
+    //Append the link to li
+    li.appendChild(link);
+    //Append the li to ul
+    taskList.appendChild(li);
+  });
+    
 }
 
 //Add task
@@ -44,11 +75,11 @@ function addTask(e){
   //Append the link to li
   li.appendChild(link);
 
-  //Store in Local Storage
-  storeTaskInLocalStorage(taskInput.value); 
-
   //Append the li to ul
   taskList.appendChild(li);
+
+  //Store in Local Storage
+  storeTaskInLocalStorage(taskInput.value); 
 
   //Clear input
   taskInput.value = '';
