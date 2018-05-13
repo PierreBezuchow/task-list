@@ -40,8 +40,12 @@ function addTask(e){
 
   //Add icon html (Materialize)
   link.innerHTML = '<i class = "fa fa-remove"></i>';
+
   //Append the link to li
   li.appendChild(link);
+
+  //Store in Local Storage
+  storeTaskInLocalStorage(taskInput.value); 
 
   //Append the li to ul
   taskList.appendChild(li);
@@ -52,6 +56,20 @@ function addTask(e){
 
 
   e.preventDefault();
+}
+
+//Store task
+function storeTaskInLocalStorage(task) {
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks')); //JSON because Local Storage can only store strings
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 //Remove task
